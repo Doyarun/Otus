@@ -2,15 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 
-if(DEFINED ENV{GITHUB_RUN_NUMBER})
-  set(PATCH_NUM $ENV{GITHUB_RUN_NUMBER})
-else()
-  set(PATCH_NUM 0)
-endif()
-
 project(helloworld
   LANGUAGES CXX
-  VERSION 0.0.12
+  VERSION 0.0."${PATCH_VERSION}"
 )
 
 set(CMAKE_BUILD_TYPE Debug)
