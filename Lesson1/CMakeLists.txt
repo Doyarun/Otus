@@ -4,7 +4,7 @@ set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 
 project(helloworld
   LANGUAGES CXX
-  VERSION 0.0."${PATCH_VERSION}"
+  VERSION 0.0.${PATCH_VERSION}
 )
 
 set(CMAKE_BUILD_TYPE Debug)
