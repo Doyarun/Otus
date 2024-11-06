@@ -9,7 +9,7 @@ set_target_properties(test_version PROPERTIES
 
 target_link_libraries(test_version
     ${Boost_LIBRARIES}
-    lib
+    versionLib
 )
 
 add_test(test_version test_version)
