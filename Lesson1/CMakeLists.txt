@@ -22,7 +22,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
     add_subdirectory(tests)
 endif()
 
-install(TARGETS HelloWorld_cli DESTINATION bin)
+install(TARGETS helloworld_cli DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
