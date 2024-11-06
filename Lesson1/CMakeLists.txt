@@ -18,7 +18,7 @@ set(CMAKE_BUILD_TYPE Debug)
 configure_file(version.h.in version.h)
 include_directories(${CMAKE_BINARY_DIR})
 
-option(BUILD_TESTS "Build unittests" OFF)
+option(BUILD_TESTS "Build unittests" ON)
 
 add_subdirectory(src)
 
