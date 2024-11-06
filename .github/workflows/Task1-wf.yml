@@ -1,9 +1,9 @@
-name: Lesson1 Workflow
+name: Task1 Workflow
 
 on: 
   push:
     paths:
-      "Lesson1/**"
+      "Task1/**"
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     defaults:
         run:
           shell: bash
-          working-directory: ./Lesson1
+          working-directory: ./Task1
     steps:
     - uses: actions/checkout@v4
     - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
@@ -28,7 +28,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.run_number }}
-        release_name: Lesson1 Release ${{ github.run_number }}
+        release_name: Task1 Release ${{ github.run_number }}
         draft: false
         prerelease: false
     - name: Upload Release
