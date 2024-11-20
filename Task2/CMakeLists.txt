@@ -26,6 +26,7 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/ip_filter.tsv" "${CMAKE_CURRENT_BINARY_DIR}/ip_filter.tsv"
     COMMENT "Copying ${copy_file_name} to build directory"
 )
+install(FILES ip_filter.tsv DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
