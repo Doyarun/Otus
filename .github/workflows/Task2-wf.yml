@@ -1,0 +1,43 @@
+name: Task1 Workflow
+
+on: 
+  push:
+    paths:
+      "Task1/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: bash
+          working-directory: ./Task1
+    steps:
+    - uses: actions/checkout@v4
+    - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
+    - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
+    - run: cmake  --build .
+    - run: cmake  --build . --target test
+    - run: cmake  --build . --target package
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_name: Task1 Release ${{ github.run_number }}
+        draft: false
+        prerelease: false
+    - name: Upload Release
+      id: upload_release-asset
+      uses: actions/upload-release-asset@v1
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Task1/helloworld-0.0.${{ github.run_number }}-Linux.deb
+        asset_name: helloworld-0.0.${{ github.run_number }}-Linux.deb
+        asset_content_type: application/vnd.debian.binary-package
