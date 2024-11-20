@@ -1,4 +1,4 @@
-name: Task1 Workflow
+name: Task2 Workflow
 
 on: 
   push:
