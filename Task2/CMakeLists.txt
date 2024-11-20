@@ -21,11 +21,11 @@ include_directories(${CMAKE_BINARY_DIR})
 add_executable(ip_filter ip_filter.cpp)
 install(TARGETS ip_filter DESTINATION bin)
 
-add_custom_command(
-    TARGET ${PROJECT_NAME} POST_BUILD 
-    COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/ip_filter.tsv" "${CMAKE_CURRENT_BINARY_DIR}/ip_filter.tsv"
-    COMMENT "Copying ${copy_file_name} to build directory"
-)
+# add_custom_command(
+#     TARGET ${PROJECT_NAME} POST_BUILD 
+#     COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/ip_filter.tsv" "${CMAKE_CURRENT_BINARY_DIR}/ip_filter.tsv"
+#     COMMENT "Copying ${copy_file_name} to build directory"
+# )
 install(FILES ip_filter.tsv DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
