@@ -3,7 +3,7 @@ name: Task2 Workflow
 on: 
   push:
     paths:
-      "Task1/**"
+      "Task2/**"
   workflow_dispatch:
 
 jobs:
@@ -13,13 +13,11 @@ jobs:
     defaults:
         run:
           shell: bash
-          working-directory: ./Task1
+          working-directory: ./Task2
     steps:
     - uses: actions/checkout@v4
-    - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
     - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
     - run: cmake  --build .
-    - run: cmake  --build . --target test
     - run: cmake  --build . --target package
     - name: Create release
       id: create_release
@@ -28,7 +26,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.run_number }}
-        release_name: Task1 Release ${{ github.run_number }}
+        release_name: Task2 Release ${{ github.run_number }}
         draft: false
         prerelease: false
     - name: Upload Release
@@ -38,6 +36,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./Task1/helloworld-0.0.${{ github.run_number }}-Linux.deb
-        asset_name: helloworld-0.0.${{ github.run_number }}-Linux.deb
+        asset_path: ./Task2/ip_filter-0.0.${{ github.run_number }}-Linux.deb
+        asset_name: ip_filter-0.0.${{ github.run_number }}-Linux.deb
         asset_content_type: application/vnd.debian.binary-package
