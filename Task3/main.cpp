@@ -31,13 +31,6 @@ int main(int argc, char const *argv[])
         container.push_back(i);
         containerCustom.push_back(i);
     }
-    containerCustom.clear();
-    for(auto i = 0; i < 5; i++)
-    {
-        container.push_back(i);
-        containerCustom.push_back(i);
-    }
-
     for(auto item : containerCustom)
     {
         std::cout << item << std::endl;
