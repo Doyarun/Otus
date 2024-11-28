@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.10)
+
+set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
+
+project(task3
+  LANGUAGES CXX
+  VERSION 0.0.${PATCH_VERSION}
+)
+
+set(CMAKE_BUILD_TYPE Debug)
+
+include_directories(${CMAKE_BINARY_DIR})
+
+add_executable(task3 main.cpp)
+install(TARGETS task3 DESTINATION bin)
+
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+
+set(CPACK_PACKAGE_CONTACT example@example.com)
+
+include(CPack)
